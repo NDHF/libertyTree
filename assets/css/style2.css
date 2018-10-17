@@ -1,0 +1,37 @@
+li.wrongAnswer {
+    color: red;
+}
+
+li.correctAnswer {
+    color: green;
+}
+
+div.progressContainer {
+    width: 100%;
+    height: 15px;
+    background-color: black;
+    margin-top: 20px;
+}
+
+div.progress {
+    width: 0%;
+    height: 15px;
+    background-color: red;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    0%   {width: 0%;}
+    100% {width: 100%;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    0%   {width: 1%;}
+    100% {width: 100%;}
+}
