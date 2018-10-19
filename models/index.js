@@ -1,13 +1,13 @@
-var config = {
-    apiKey: "AIzaSyD68rbaMHr4XzUKdGfHbgjT6u1JMygEilw",
-    authDomain: "harmonize-dd029.firebaseapp.com",
-    databaseURL: "https://harmonize-dd029.firebaseio.com",
-    projectId: "harmonize-dd029",
-    storageBucket: "harmonize-dd029.appspot.com",
-    messagingSenderId: "419798913580"
-};
-var firebase = require('firebase');
-firebase.initializeApp(config);
+// var config = {
+//     apiKey: "AIzaSyD68rbaMHr4XzUKdGfHbgjT6u1JMygEilw",
+//     authDomain: "harmonize-dd029.firebaseapp.com",
+//     databaseURL: "https://harmonize-dd029.firebaseio.com",
+//     projectId: "harmonize-dd029",
+//     storageBucket: "harmonize-dd029.appspot.com",
+//     messagingSenderId: "419798913580"
+// };
+// var firebase = require('firebase');
+// firebase.initializeApp(config);
 console.warn('Loading index signin:', firebase.auth().currentUser)
 
 

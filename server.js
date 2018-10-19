@@ -15,6 +15,17 @@ var PORT = process.env.PORT || 8080;
 // Requiring our models for syncing
 var db = require("./models");
 
+// var config = {
+//   apiKey: "AIzaSyD68rbaMHr4XzUKdGfHbgjT6u1JMygEilw",
+//   authDomain: "harmonize-dd029.firebaseapp.com",
+//   databaseURL: "https://harmonize-dd029.firebaseio.com",
+//   projectId: "harmonize-dd029",
+//   storageBucket: "harmonize-dd029.appspot.com",
+//   messagingSenderId: "419798913580"
+// };
+// var firebase = require('firebase');
+// firebase.initializeApp(config);
+
 // Sets up the Express app to handle data parsing
 
 // parse application/x-www-form-urlencoded
