@@ -73,3 +73,5 @@ $(document).ready(function () {
     function loggedIn() {
         window.location = 'search.html'
     }
+
+});
