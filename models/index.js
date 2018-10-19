@@ -6,6 +6,7 @@ var config = {
     storageBucket: "harmonize-dd029.appspot.com",
     messagingSenderId: "419798913580"
 };
+var firebase = require('firebase');
 firebase.initializeApp(config);
 console.warn('Loading index signin:', firebase.auth().currentUser)
 
