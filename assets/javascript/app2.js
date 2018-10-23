@@ -76,7 +76,7 @@ function startCountdown() {
     stop = setTimeout(function () {
         console.log("Start countdown called");
         loadNextQuestion(parseInt($("div#quizIndexDiv").text()));
-    }, 5000);
+    }, 10000);
 };
 
 function stopCountDown() {
