@@ -19,6 +19,11 @@ module.exports = function (app, passport) {
         res.render('quizzes.ejs');
     });
 
+    // LOCAL
+    app.get("/local", function (req, res) {
+        res.render('local.ejs');
+    });
+
     // Q&A
 
     app.get("/qanda", function (req, res) {
