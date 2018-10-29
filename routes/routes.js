@@ -19,6 +19,28 @@ module.exports = function (app, passport) {
         res.render('quizzes.ejs');
     });
 
+    // Q&A
+
+    app.get("/qanda", function (req, res) {
+        res.render('qanda.ejs', {
+            isAdmin: verifyIsAdmin(req)
+        });
+    });
+
+    // ARTICLES
+
+    app.get("/articles", function (req, res) {
+        res.render('articles.ejs', {
+            isAdmin: verifyIsAdmin(req)
+        });
+    });
+
+    // ZIP CODE
+
+    app.get("/zipcode", function (req, res) {
+        res.render('zipCode.ejs');
+    });
+
     // LOGOUT ==============================
     app.get('/logout', function (req, res) {
         req.logout();
@@ -217,4 +239,8 @@ function isLoggedIn(req, res, next) {
         return next();
 
     res.redirect('/login');
-}
+};
+
+function verifyIsAdmin(req) {
+    return req.isAuthenticated();
+};
