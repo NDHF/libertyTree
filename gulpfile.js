@@ -3,7 +3,7 @@ var sass = require('gulp-sass');
 var header = require('gulp-header');
 var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
-var uglify = require('gulp-uglify');
+var uglify = require('gulp-uglify-es').default;
 var autoprefixer = require('gulp-autoprefixer');
 var pkg = require('./package.json');
 var browserSync = require('browser-sync').create();
@@ -26,25 +26,25 @@ gulp.task('vendor', function() {
       '!./node_modules/bootstrap/dist/css/bootstrap-grid*',
       '!./node_modules/bootstrap/dist/css/bootstrap-reboot*'
     ])
-    .pipe(gulp.dest('./vendor/bootstrap'))
+    .pipe(gulp.dest('./public/vendor/bootstrap'))
 
   // Font Awesome
   gulp.src([
       './node_modules/@fortawesome/**/*',
     ])
-    .pipe(gulp.dest('./vendor'))
+    .pipe(gulp.dest('./public/vendor'))
 
   // jQuery
   gulp.src([
       './node_modules/jquery/dist/*',
       '!./node_modules/jquery/dist/core.js'
     ])
-    .pipe(gulp.dest('./vendor/jquery'))
+    .pipe(gulp.dest('./public/vendor/jquery'))
 
 });
 
-// Compile SCSS
-gulp.task('css:compile', function() {
+// CSS
+gulp.task('css', function() {
   return gulp.src('./scss/**/*.scss')
     .pipe(sass.sync({
       outputStyle: 'expanded'
@@ -56,25 +56,13 @@ gulp.task('css:compile', function() {
     .pipe(header(banner, {
       pkg: pkg
     }))
-    .pipe(gulp.dest('./css'))
-});
-
-// Minify CSS
-gulp.task('css:minify', ['css:compile'], function() {
-  return gulp.src([
-      './css/*.css',
-      '!./css/*.min.css'
-    ])
     .pipe(cleanCSS())
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('./css'))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest('./public/css'))
+    .pipe(browserSync.stream()); 
 });
-
-// CSS
-gulp.task('css', ['css:compile', 'css:minify']);
 
 // Minify JavaScript
 gulp.task('js:minify', function() {
@@ -83,13 +71,16 @@ gulp.task('js:minify', function() {
       '!./js/*.min.js'
     ])
     .pipe(uglify())
+    .on('error', function(err) {
+      console.error('Error in compress task', err.toString());
+    })
     .pipe(rename({
       suffix: '.min'
     }))
     .pipe(header(banner, {
       pkg: pkg
     }))
-    .pipe(gulp.dest('./js'))
+    .pipe(gulp.dest('./public/js'))
     .pipe(browserSync.stream());
 });
 

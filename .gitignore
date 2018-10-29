@@ -59,3 +59,11 @@ typings/
 
 # next.js build output
 .next
+
+# ignore gulped static resources
+public/vendor/
+public/css/
+public/js/
+
+# ignore package-lock.json
+package-lock.json
