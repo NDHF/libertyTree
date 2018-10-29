@@ -9,9 +9,14 @@ module.exports = function (app, passport) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function (req, res) {
-        res.render('home.ejs', {
+        res.render('profile.ejs', {
             user: req.user
         });
+    });
+
+    // QUIZZES 
+    app.get("/quizzes", function (req, res) {
+        res.render('quizzes.ejs');
     });
 
     // LOGOUT ==============================
@@ -28,14 +33,14 @@ module.exports = function (app, passport) {
     // LOGIN ===============================
     // show the login form
     app.get('/login', function (req, res) {
-        res.render('login.ejs', {
+        res.render('oauthpage.ejs', {
             message: req.flash('loginMessage')
         });
     });
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect: 'views/home.ejs', // redirect to the secure profile section
+        successRedirect: '/', // redirect to the secure profile section
         failureRedirect: '/login', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages
     }));
@@ -48,40 +53,42 @@ module.exports = function (app, passport) {
         });
     });
 
-    // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/profile', // redirect to the secure profile section
-        failureRedirect: '/signup', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
-    }));
+    // TODO
 
-    // facebook -------------------------------
+    // // process the signup form
+    // app.post('/signup', passport.authenticate('local-signup', {
+    //     successRedirect: '/profile', // redirect to the secure profile section
+    //     failureRedirect: '/signup', // redirect back to the signup page if there is an error
+    //     failureFlash: true // allow flash messages
+    // }));
 
-    // send to facebook to do the authentication
-    app.get('/auth/facebook', passport.authenticate('facebook', {
-        scope: ['public_profile', 'email']
-    }));
+    // // facebook -------------------------------
 
-    // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: 'views/home.ejs',
-            failureRedirect: '/'
-        }));
+    // // send to facebook to do the authentication
+    // app.get('/auth/facebook', passport.authenticate('facebook', {
+    //     scope: ['public_profile', 'email']
+    // }));
 
-    // twitter --------------------------------
+    // // handle the callback after facebook has authenticated the user
+    // app.get('/auth/facebook/callback',
+    //     passport.authenticate('facebook', {
+    //         successRedirect: 'views/home.ejs',
+    //         failureRedirect: '/'
+    //     }));
 
-    // send to twitter to do the authentication
-    app.get('/auth/twitter', passport.authenticate('twitter', {
-        scope: 'email'
-    }));
+    // // twitter --------------------------------
 
-    // handle the callback after twitter has authenticated the user
-    app.get('/auth/twitter/callback',
-        passport.authenticate('twitter', {
-            successRedirect: 'views/home.ejs',
-            failureRedirect: '/'
-        }));
+    // // send to twitter to do the authentication
+    // app.get('/auth/twitter', passport.authenticate('twitter', {
+    //     scope: 'email'
+    // }));
+
+    // // handle the callback after twitter has authenticated the user
+    // app.get('/auth/twitter/callback',
+    //     passport.authenticate('twitter', {
+    //         successRedirect: 'views/home.ejs',
+    //         failureRedirect: '/'
+    //     }));
 
 
     // google ---------------------------------
@@ -94,8 +101,8 @@ module.exports = function (app, passport) {
     // the callback after google has authenticated the user
     app.get('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '/profile',
-            failureRedirect: '/'
+            successRedirect: '/',
+            failureRedirect: '/login'
         }));
 
     // =============================================================================
@@ -209,23 +216,5 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    res.redirect('/');
+    res.redirect('/login');
 }
-
-// locally --------------------------------
-// HOME PAGE LOGIN ===============================
-
-// locally --------------------------------
-// QUIZZES LOGIN ===============================
-
-// locally --------------------------------
-// QNA LOGIN ===============================
-
-// locally --------------------------------
-// REPRESENTATIVES LOGIN ===============================
-
-// locally --------------------------------
-// ARTICLES LOGIN ===============================
-
-// locally --------------------------------
-// ADMIN LOGIN ===============================
