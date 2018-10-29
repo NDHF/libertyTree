@@ -3,7 +3,7 @@ var sass = require('gulp-sass');
 var header = require('gulp-header');
 var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
-var uglify = require('gulp-uglify');
+var uglify = require('gulp-uglify-es').default;
 var autoprefixer = require('gulp-autoprefixer');
 var pkg = require('./package.json');
 var browserSync = require('browser-sync').create();
@@ -26,20 +26,20 @@ gulp.task('vendor', function() {
       '!./node_modules/bootstrap/dist/css/bootstrap-grid*',
       '!./node_modules/bootstrap/dist/css/bootstrap-reboot*'
     ])
-    .pipe(gulp.dest('./vendor/bootstrap'))
+    .pipe(gulp.dest('./public/vendor/bootstrap'))
 
   // Font Awesome
   gulp.src([
-      './node_modules/@fortawesome/**/*',
+      './node_modules/@fontawesome/**/*',
     ])
-    .pipe(gulp.dest('./vendor'))
+    .pipe(gulp.dest('./public/vendor'))
 
   // jQuery
   gulp.src([
       './node_modules/jquery/dist/*',
       '!./node_modules/jquery/dist/core.js'
     ])
-    .pipe(gulp.dest('./vendor/jquery'))
+    .pipe(gulp.dest('./public/vendor/jquery'))
 
 });
 
@@ -69,7 +69,7 @@ gulp.task('css:minify', ['css:compile'], function() {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('./css'))
+    .pipe(gulp.dest('./public/css'))
     .pipe(browserSync.stream());
 });
 
@@ -83,13 +83,16 @@ gulp.task('js:minify', function() {
       '!./js/*.min.js'
     ])
     .pipe(uglify())
+    .on('error', function(err) {
+      console.error('Error in compress task', err.toString());
+    })
     .pipe(rename({
       suffix: '.min'
     }))
     .pipe(header(banner, {
       pkg: pkg
     }))
-    .pipe(gulp.dest('./js'))
+    .pipe(gulp.dest('./public/js'))
     .pipe(browserSync.stream());
 });
 
