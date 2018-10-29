@@ -30,7 +30,7 @@ gulp.task('vendor', function() {
 
   // Font Awesome
   gulp.src([
-      './node_modules/@fontawesome/**/*',
+      './node_modules/@fortawesome/**/*',
     ])
     .pipe(gulp.dest('./public/vendor'))
 
@@ -43,8 +43,8 @@ gulp.task('vendor', function() {
 
 });
 
-// Compile SCSS
-gulp.task('css:compile', function() {
+// CSS
+gulp.task('css', function() {
   return gulp.src('./scss/**/*.scss')
     .pipe(sass.sync({
       outputStyle: 'expanded'
@@ -56,25 +56,13 @@ gulp.task('css:compile', function() {
     .pipe(header(banner, {
       pkg: pkg
     }))
-    .pipe(gulp.dest('./css'))
-});
-
-// Minify CSS
-gulp.task('css:minify', ['css:compile'], function() {
-  return gulp.src([
-      './css/*.css',
-      '!./css/*.min.css'
-    ])
     .pipe(cleanCSS())
     .pipe(rename({
       suffix: '.min'
     }))
     .pipe(gulp.dest('./public/css'))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream()); 
 });
-
-// CSS
-gulp.task('css', ['css:compile', 'css:minify']);
 
 // Minify JavaScript
 gulp.task('js:minify', function() {

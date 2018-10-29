@@ -64,3 +64,6 @@ typings/
 public/vendor/
 public/css/
 public/js/
+
+# ignore package-lock.json
+package-lock.json

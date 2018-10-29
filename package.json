@@ -4,6 +4,7 @@
   "description": "An app for educating the American public about general civics",
   "main": "gulpfile.js",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.4.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.3",
@@ -12,7 +13,6 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "fontawesome": "^4.7.2",
     "jquery": "^3.3.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.3.7",
