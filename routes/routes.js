@@ -24,6 +24,16 @@ module.exports = function (app, passport) {
         res.render('local.ejs');
     });
 
+    // voterZip
+    app.get("/voterZip", function (req, res) {
+        res.render('voterInfoPage.ejs');
+    });
+
+    // localElections
+    app.get("/localElections", function (req, res) {
+        res.render('votingApiInformation.ejs');
+    });    
+
     // Q&A
 
     app.get("/qanda", function (req, res) {
