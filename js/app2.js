@@ -50,18 +50,21 @@ function launchQuiz(quizIndex) {
         radioButtonDiv.append($("<br>"));
     }
     container.append(radioButtonDiv);
+    let nextQuestionAndQuitDiv = $("<div>");
+    nextQuestionAndQuitDiv.attr("id", "nextQuestionAndQuitDiv");
     let nextQuestionButton = $("<button>");
     nextQuestionButton.attr("type", "button");
     nextQuestionButton.attr("id", "nextQuestionButton");
     nextQuestionButton.attr("value", "NEXT QUESTION");
     nextQuestionButton.text("NEXT QUESTION");
-    container.append(nextQuestionButton);
+    nextQuestionAndQuitDiv.append(nextQuestionButton);
     let quitButton = $("<button>");
     quitButton.attr("type", "button");
     quitButton.attr("id", "quitButton");
     quitButton.text("QUIT");
     container.append("<br><br>");
-    container.append(quitButton);
+    nextQuestionAndQuitDiv.append(quitButton);
+    container.append(nextQuestionAndQuitDiv);
     let progressContainer = $("<div>");
     progressContainer.addClass("progressContainer");
     let progress = $("<div>");
