@@ -1,44 +1,109 @@
+body {
+  background-image: url("../img/independencehall.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+a.nav-link {
+  color: black;
+}
+
 li.wrongAnswer {
-    color: red;
+  color: red;
 }
 
 li.correctAnswer {
-    color: green;
+  color: green;
+}
+
+ul#quizLauncherList li {
+  list-style-type: none;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+div#radioButtonDivID {
+  margin-left: 20%;
+}
+
+h3#questionNumberID,
+h4#currentQuestionID {
+  text-align: center;
+}
+
+button.quizLauncher,
+button#nextQuestionButton,
+button#quitButton {
+  width: 52%;
+}
+
+div#nextQuestionAndQuitDiv {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div#nextQuestionAndQuitDiv button {
+  margin-bottom: 20px;
 }
 
 div.progressContainer {
-    width: 100%;
-    height: 15px;
-    background-color: black;
-    margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 15px;
+  background-color: black;
+  margin-top: 20px;
+}
+
+div#quizlocation {
+  margin-top: 250px;
 }
 
 div.progress {
-    width: 0%;
-    height: 15px;
-    background-color: red;
-    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
-    -webkit-animation-duration: 5s; /* Safari 4.0 - 8.0 */
-    animation-name: example;
-    animation-duration: 10s;
-    animation-timing-function: linear;
+  width: 0%;
+  height: 15px;
+  background-color: red;
+  -webkit-animation-name: example;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 5s;
+  /* Safari 4.0 - 8.0 */
+  animation-name: example;
+  animation-duration: 10s;
+  animation-timing-function: linear;
 }
 
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes example {
-    0%   {width: 0%;}
-    100% {width: 100%;}
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 /* Standard syntax */
 @keyframes example {
-    0%   {width: 1%;}
-    100% {width: 100%;}
+  0% {
+    width: 1%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
-* {box-sizing: border-box}
+* {
+  box-sizing: border-box
+}
+
 /* Full-width input fields */
-  input[type=text], input[type=password] {
+input[type=text],
+input[type=password] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -47,8 +112,13 @@ div.progress {
   background: #f1f1f1;
 }
 
+input[type=radio] {
+  margin-right: 10px;
+}
+
 /* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus,
+input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
@@ -62,11 +132,11 @@ button {
   border: none;
   cursor: pointer;
   width: 100%;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 button:hover {
-  opacity:1;
+  opacity: 1;
 }
 
 /* Extra styles for the cancel button */
@@ -76,7 +146,8 @@ button:hover {
 }
 
 /* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
+.cancelbtn,
+.signupbtn {
   float: left;
   width: 50%;
 }
@@ -88,14 +159,20 @@ button:hover {
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
   background-color: #474e5d;
   padding-top: 50px;
 }
@@ -103,9 +180,11 @@ button:hover {
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  margin: 5% auto 15% auto;
+  /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
+  /* Could be more or less, depending on screen size */
 }
 
 /* Style the horizontal ruler */
@@ -139,7 +218,17 @@ hr {
 
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
+
+  .cancelbtn,
+  .signupbtn {
     width: 100%;
+  }
+
+  div#radioButtonDivID {
+    margin-left: 20%;
+  }
+
+  input[type=radio] {
+    margin-right: 5px;
   }
 }
