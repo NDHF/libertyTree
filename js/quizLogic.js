@@ -1,6 +1,6 @@
 $("button.quizLauncher").on("click", function () {
     $("ul#quizLauncherList").hide();
-    $("div#container").html("");
+    $("div#quizContainer").html("");
     getQuiz($(this).attr("id"));
 });
 
@@ -16,7 +16,7 @@ function getQuiz(idOfQuizButton) {
 function launchQuiz(quizIndex) {
     console.log("I am using quizIndex: " + quizIndex);
 
-    let container = $("div#container");
+    let container = $("div#quizContainer");
     let quizIndexDiv = $("<div>");
     quizIndexDiv.attr("hidden", true);
     quizIndexDiv.attr("id", "quizIndexDiv");
@@ -24,7 +24,7 @@ function launchQuiz(quizIndex) {
     container.append(quizIndexDiv);
     let questionNumber = $("<h3>");
     questionNumber.attr("id", "questionNumberID");
-    questionNumber.text("Question # " + quizzes[quizIndex].questions[0].questionNumber);
+    questionNumber.text("Question " + quizzes[quizIndex].questions[0].questionNumber);
     container.append(questionNumber);
     let currentQuestion = $("<h4>");
     currentQuestion.attr("id", "currentQuestionID");
@@ -121,7 +121,7 @@ function loadNextQuestion(quizIndex) {
         }
         if (userAnswers.length !== quizzes[quizIndex].answerArray.length) {
             $("ul.quizLauncherList").hide();
-            $("h3#questionNumberID").text("Question # " + quizzes[quizIndex].questions[userAnswers.length].questionNumber + "/" + quizzes[quizIndex].answerArray.length);
+            $("h3#questionNumberID").text("Question " + quizzes[quizIndex].questions[userAnswers.length].questionNumber + "/" + quizzes[quizIndex].answerArray.length);
             $("h4#currentQuestionID").text(quizzes[quizIndex].questions[userAnswers.length].currentQuestion);
             for (let i = 0; i <= 3; i++) {
                 $("span.choices:eq(" + i + ")").text(quizzes[quizIndex].questions[userAnswers.length].answerChoices[i]);
@@ -130,7 +130,7 @@ function loadNextQuestion(quizIndex) {
         } else if (userAnswers.length === quizzes[quizIndex].answerArray.length) {
                 $("ul#quizLauncherList").show();
                 elQuizIndex = parseInt($("div#quizIndexDiv").text());
-                $("div#container").html("<p>The quiz is over.</p>");
+                $("div#quizContainer").html("<p>The quiz is over.</p>");
                 gradingFunction(elQuizIndex);
         }    
 };
@@ -145,13 +145,19 @@ function gradingFunction(quizIndex) {
             wrongAnswerArray.push(userAnswers[i]);
         }
     }
-    $("div#container").html("");
+    $("div#quizContainer").html("");
     let yourPercentage = $("<p>");
+    let singularOrPlural;
+    if (wrongAnswerArray.length === (quizzes[quizIndex].answerArray.length - 1)) {
+        singularOrPlural = " question ";
+    } else if (wrongAnswerArray.length > 1) {
+        singularOrPlural = " questions ";
+    }
     yourPercentage.text("You got " + (quizzes[quizIndex].answerArray.length - wrongAnswerArray.length) + 
-    " questions correct, or " + ((((quizzes[quizIndex].answerArray.length - wrongAnswerArray.length) / quizzes[quizIndex].answerArray.length))
+    singularOrPlural + "correct, or " + ((((quizzes[quizIndex].answerArray.length - wrongAnswerArray.length) / quizzes[quizIndex].answerArray.length))
     * 100).toFixed(2) + 
     "% of questions.");
-    $("div#container").append(yourPercentage);
+    $("div#quizContainer").append(yourPercentage);
     console.log(wrongAnswerArray);
     let wrongAnswersDiv = $("<div>");
     let questionsYouGotWrong = $("<p>");
@@ -180,7 +186,7 @@ function gradingFunction(quizIndex) {
         wrongAnswerList.append(wrongAnswerListItem);
     }
     wrongAnswersDiv.append(wrongAnswerList);
-    $("div#container").append(wrongAnswersDiv);
+    $("div#quizContainer").append(wrongAnswersDiv);
     resetQuizzes();
 }
 
@@ -188,17 +194,16 @@ function resetQuizzes() {
     userAnswers = [];
 }
 
-$("div#container").on("click", "#nextQuestionButton", function () {
+$("div#quizContainer").on("click", "#nextQuestionButton", function () {
     console.log("Hello, world!");
     stopCountDown();
     loadNextQuestion(parseInt($("div#quizIndexDiv").text()));
 });
 
-$("div#container").on("click", "button#quitButton", function () {
+$("div#quizContainer").on("click", "button#quitButton", function () {
     console.log("quit button was clicked");
     resetQuizzes();
     stopCountDown();
-    $("div#container").html(" ");
+    $("div#quizContainer").html(" ");
     $("ul#quizLauncherList").show();
 });
-

@@ -37,9 +37,11 @@ module.exports = function (app, passport) {
     // Q&A
 
     app.get("/qanda", function (req, res) {
-        res.render('qanda.ejs', {
-            isAdmin: verifyIsAdmin(req)
-        });
+        if (req.isAuthenticated()) {
+            res.render('qandaAnswerSubmission.ejs');
+        } else {
+            res.render('qandaQuestionSubmission.ejs');
+        }
     });
 
     // ARTICLES
@@ -54,6 +56,18 @@ module.exports = function (app, passport) {
 
     app.get("/zipcode", function (req, res) {
         res.render('zipCode.ejs');
+    });
+
+    // VOTER INFO
+
+    app.get("/voterinfo", function (req, res) {
+        res.render('voterInfoPage.ejs');
+    });
+    
+    // VOTING API INFORMATION
+
+    app.get("/localElections", function (req, res) {
+        res.render('votingApiInformation.ejs');
     });
 
     // LOGOUT ==============================
