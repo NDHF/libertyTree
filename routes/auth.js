@@ -19,8 +19,8 @@ module.exports = {
     },
 
     'googleAuth' : {
-        'clientID'         : process.env.GOOGLE_OAUTH_TEST_APP_CLIENT_ID,
-        'clientSecret'     : process.env.GOOGLE_OAUTH_TEST_APP_CLIENT_SECRET,
+        'clientID'         : process.env.GOOGLE_OAUTH_TEST_APP_CLIENT_ID || "Christmas Robot do do do",
+        'clientSecret'     : process.env.GOOGLE_OAUTH_TEST_APP_CLIENT_SECRET || "Oh he's so sassy!",
         'callbackURL'      : `${process.env.LIBERTY_TREE_ROUTE || ""}/auth/google/callback`,
         'proxy'            : true,
         'passReqToCallback': true,
