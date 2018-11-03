@@ -150,7 +150,7 @@ function gradingFunction(quizIndex) {
     let singularOrPlural;
     if (wrongAnswerArray.length === (quizzes[quizIndex].answerArray.length - 1)) {
         singularOrPlural = " question ";
-    } else if (wrongAnswerArray.length > 1) {
+    } else {
         singularOrPlural = " questions ";
     }
     yourPercentage.text("You got " + (quizzes[quizIndex].answerArray.length - wrongAnswerArray.length) + 
